@@ -12,6 +12,7 @@ if (isset($_POST['submit'])) {
     $prepared_stmt = $dbo->prepare($query);
     $prepared_stmt->bindValue(':cnum', $cnum, PDO::PARAM_STR);
     $prepared_stmt->execute();
+    $result = $prepared_stmt->fetchAll();
   } catch (PDOException $ex) { // Error in database processing.
     echo $sql . "<br>" . $error->getMessage(); // HTTP 500 - Internal Server Error
   }
@@ -24,14 +25,15 @@ if (isset($_POST['submit'])) {
 <head>
   <link rel="stylesheet" type="text/css" href="project.css" />
 </head>
-
+<BODY background = "DJI_0373.JPG">
 <body>
   <div id="navbar">
     <ul>
-      <li><a href="index.html"> Home </a></li>
-      <li><a href="updateCase.php"> Update Application </a></li>
-      <li><a href="insertCase.php"> Insert Application </a></li>
-      <li><a href="deleteCase.php"> Delete Application </a></li>
+      <li><a href="index.html", div style = "color:white"> Home </a></li>
+      <li><a href="record.php", div style = "color:white"> View Record </a></li>
+      <li><a href="updateCase.php", div style = "color:white"> Update Application </a></li>
+      <li><a href="insertCase.php", div style = "color:white"> Insert Application </a></li>
+
     </ul>
   </div>
 
@@ -39,12 +41,35 @@ if (isset($_POST['submit'])) {
 
   <form method="post">
 
-    <span for="cnum">Case Number(*):</span>
+    <span for="cnum", div style = "color:white">Case Number(*):</span>
     <input type="text" name="cnum" id="cnum" required>
 
-    <input type="submit" name="submit" value="Delete Case" class ="btn">
+    <input type="submit" name="submit" value="Delete Case">
   </form>
+     <?php
+      if (isset($_POST['submit'])) {
+              if ($result && $prepared_stmt->rowCount() > 0) { ?>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Delete Status</th>
 
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <?php foreach ($result as $row) { ?>
+
+                          <tr>
+                            <td><div style="color:white"><?php echo $row["ret"];?></td>
+                          </tr>
+                        <?php } ?>
+                      </tbody>
+                  </table>
+              <?php } else { ?>
+                        Delete is unsuccesful to ID: <?php echo $_POST['cnum']; ?>.
+                      <?php }
+          } ?>
 
 
 </body>

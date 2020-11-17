@@ -14,7 +14,6 @@ try
       $prepared_stmt->bindValue(':case_status', $director, PDO::PARAM_STR);
       $prepared_stmt->execute();
       $result = $prepared_stmt->fetchAll();
-
     }
     catch (PDOException $ex)
     { // Error in database processing.

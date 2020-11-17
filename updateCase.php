@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
     $prepared_stmt->bindValue(':cnum', $cnum, PDO::PARAM_STR);
     $prepared_stmt->bindValue(':cstatus', $cstatus, PDO::PARAM_STR);
     $prepared_stmt->execute();
+    $result = $prepared_stmt->fetchAll();
   } catch (PDOException $ex) { // Error in database processing.
     echo $sql . "<br>" . $error->getMessage(); // HTTP 500 - Internal Server Error
   }
@@ -34,8 +35,10 @@ if (isset($_POST['submit'])) {
     $prepared_stmt->bindValue(':agent_city', $agent_city, PDO::PARAM_STR);
     $prepared_stmt->bindValue(':agent_state', $agent_state, PDO::PARAM_STR);
     $prepared_stmt->execute();
+    echo "<script>alert('update is successful!')</script>";
   } catch (PDOException $ex) { // Error in database processing.
     echo $sql . "<br>" . $error->getMessage(); // HTTP 500 - Internal Server Error
+    echo "<script>alert('The update is unsuccesful')</script>";
   }
 }
 
@@ -60,6 +63,8 @@ if (isset($_POST['submit'])) {
   <h1> Update H1B Application </h1>
 
 
+<BODY background = "DJI_0373.JPG">
+
   <form method="post">
 
     <table>
@@ -70,7 +75,7 @@ if (isset($_POST['submit'])) {
         </th>
       </tr>
       <tr>
-        <td colspan="3"><span for="cstatus">Case Status:</span>
+        <td colspan="3"><span for="cstatus",div style="color:white">Case Status:</span>
           <select id="cstatus" name="cstatus">
             <option value="WITHDRAWN">WITHDRAWN</option>
             <option value="CERTIFIED">CERTIFIED</option>
@@ -82,13 +87,13 @@ if (isset($_POST['submit'])) {
 
       </tr>
       <tr>
-        <td><span for="agent_name">Agent Attorney Name:</span>
+        <td><span for="agent_name",div style="color:white">Agent Attorney Name:</span>
           <input type="text" name="agent_name"> <br></td>
-        <td><span for="agent_city">Agent Attorney City:</span>
+        <td><span for="agent_city",div style="color:white">Agent Attorney City:</span>
           <input type="text" name="agent_city"> <br></td>
-        <td> <span for="agent_state">Agent Attorney State:</span>
+        <td> <span for="agent_state",div style="color:white">Agent Attorney State:</span>
 
-          <select id="agent_state" name="agent_state" size='3'>
+          <select id="agent_state" name="agent_state" size='1'>
             <option value="AL">AL</option>
             <option value="AK">AK</option>
             <option value="AR">AR</option>
@@ -146,6 +151,30 @@ if (isset($_POST['submit'])) {
     </table>
 
   </form>
+      <?php
+  if (isset($_POST['submit'])) {
+          if ($result && $prepared_stmt->rowCount() > 0) { ?>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Update Status</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <?php foreach ($result as $row) { ?>
+
+                      <tr>
+                        <td><div style="color:white"><?php echo $row["ret"];?></td>
+                      </tr>
+                    <?php } ?>
+                  </tbody>
+              </table>
+          <?php } else { ?>
+                    Update is unsuccesful to ID: <?php echo $_POST['cnum']; ?>.
+                  <?php }
+      } ?>
 
 
 

@@ -2,7 +2,7 @@
 
 $dbhost = '127.0.0.1'; // localhost
 $dbuname = 'root';
-$dbpass = 'root';
+$dbpass = '';
 $dbname = 'H_info';
 
 
