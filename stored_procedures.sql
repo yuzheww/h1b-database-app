@@ -1,6 +1,5 @@
 USE H_info;
 
-DELIMITER ;
 
 -- Update case status: WITHDRAWN, CERTIFIED, DENIED, CERTIFIED-WITHDRAWN, INPROGRESS
 DROP PROCEDURE IF EXISTS updateStatus;
@@ -11,7 +10,6 @@ BEGIN
   UPDATE ApplicationInfo
   SET case_status = case_stat
   WHERE case_number = case_num;
-  SELECT "Update is successful" as ret;
 
 END//
 
@@ -59,7 +57,7 @@ BEGIN
     
     DELETE FROM ApplicationInfo
 	WHERE case_number = case_num;
-	SELECT "DELETE is successful!" as ret;
+ 
 END//
 
 DELIMITER ;
@@ -76,22 +74,5 @@ BEGIN
  
 END//
 
-DELIMITER ;
-DROP PROCEDURE IF EXISTS queryNum;
-DELIMITER //
-CREATE PROCEDURE queryNum(IN case_num CHAR(18))
-BEGIN
-	SELECT * FROM big_table WHERE case_num = case_number;
- 
-END//
-DELIMITER ;
-DELIMITER ;
-DROP PROCEDURE IF EXISTS queryInterval;
-DELIMITER //
-CREATE PROCEDURE queryInterval(IN pl INT)
-BEGIN
-	SELECT *  FROM big_table WHERE total_wage >= pl;
- 
-END//
 DELIMITER ;
 

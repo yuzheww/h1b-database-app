@@ -28,20 +28,21 @@ if (isset($_POST['submit'])) {
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="project.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
     <div id="navbar">
         <ul>
-            <li><a href="index.html"> Home </a></li>
-            <li><a href="updateCase.php"> Update Application </a></li>
-            <li><a href="insertCase.php"> Insert Application </a></li>
-            <li><a href="deleteCase.php"> Delete Application </a></li>
+        <li><a href="index.html"> Home </a></li>
+			<li><a href="record.php"> View Record </a></li>
+			<li><a href="updateCase.php"> Update Application </a></li>
+			<li><a href="insertCase.php"> Insert Application </a></li>
+			<li><a href="deleteCase.php"> Delete Application </a></li>
         </ul>
     </div>
 
-    <h1> Insert a Case </h1>
+    <h1> Insert H1B Application </h1>
 
     <form method="post">
         <table>

@@ -23,53 +23,57 @@ if (isset($_POST['submit'])) {
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="project.css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
-<BODY background = "DJI_0373.JPG">
+
 <body>
   <div id="navbar">
     <ul>
-      <li><a href="index.html", div style = "color:white"> Home </a></li>
-      <li><a href="record.php", div style = "color:white"> View Record </a></li>
-      <li><a href="updateCase.php", div style = "color:white"> Update Application </a></li>
-      <li><a href="insertCase.php", div style = "color:white"> Insert Application </a></li>
-
+      <li><a href="index.html"> Home </a></li>
+			<li><a href="record.php"> View Record </a></li>
+			<li><a href="updateCase.php"> Update Application </a></li>
+			<li><a href="insertCase.php"> Insert Application </a></li>
+			<li><a href="deleteCase.php"> Delete Application </a></li>
     </ul>
   </div>
 
-  <h1> Delete a Case </h1>
+  <h1> Delete H1B Application </h1>
 
   <form method="post">
 
-    <span for="cnum", div style = "color:white">Case Number(*):</span>
+    <span for="cnum">Case Number(*):</span>
     <input type="text" name="cnum" id="cnum" required>
 
-    <input type="submit" name="submit" value="Delete Case">
+    <input type="submit" name="submit" value="Delete Case" class = "btn">
   </form>
-     <?php
-      if (isset($_POST['submit'])) {
-              if ($result && $prepared_stmt->rowCount() > 0) { ?>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Delete Status</th>
+  
+  
+  <?php
+  if (isset($_POST['submit'])) {
+    if ($result && $prepared_stmt->rowCount() > 0) { ?>
+      <table>
+        <thead>
+          <tr>
+            <th>Delete Status</th>
 
-                        </tr>
-                      </thead>
-                      <tbody>
+          </tr>
+        </thead>
+        <tbody>
 
-                        <?php foreach ($result as $row) { ?>
+          <?php foreach ($result as $row) { ?>
 
-                          <tr>
-                            <td><div style="color:white"><?php echo $row["ret"];?></td>
-                          </tr>
-                        <?php } ?>
-                      </tbody>
-                  </table>
-              <?php } else { ?>
-                        Delete is unsuccesful to ID: <?php echo $_POST['cnum']; ?>.
-                      <?php }
-          } ?>
+            <tr>
+              <td>
+                <div><?php echo $row["ret"]; ?>
+              </td>
+            </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+    <?php } else { ?>
+      Delete is unsuccesful to ID: <?php echo $_POST['cnum']; ?>.
+  <?php }
+  } ?>
 
 
 </body>

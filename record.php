@@ -42,23 +42,24 @@ if (isset($_POST['submit'])) {
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="project.css" />
+<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
   <div id="navbar">
     <ul>
-      <li><a href="index.html"> Home </a></li>
-      <li><a href="updateCase.php"> Update Application </a></li>
-      <li><a href="insertCase.php"> Insert Application </a></li>
-      <li><a href="deleteCase.php"> Delete Application </a></li>
+    <li><a href="index.html"> Home </a></li>
+			<li><a href="record.php"> View Record </a></li>
+			<li><a href="updateCase.php"> Update Application </a></li>
+			<li><a href="insertCase.php"> Insert Application </a></li>
+			<li><a href="deleteCase.php"> Delete Application </a></li>
     </ul>
   </div>
-<BODY background = "DJI_0373.JPG">
+
   <h1> Query a Case by case number</h1>
   <form method="post">
 
-    <span for="cnum",div style="color:white">Case Number(*):</span>
+    <span for="cnum">Case Number(*):</span>
     <input type="text" name="cnum">
           <input type="submit" name="submit" value="Submit">
   </form>
@@ -66,7 +67,7 @@ if (isset($_POST['submit'])) {
     <?php
 if (isset($_POST['submit'])) {
         if ($result && $prepared_stmt->rowCount() > 0) { ?>
-              <h2,div style="color:white">Main Results</h2>
+              <h2>Main Results</h2>
               <table>
                 <thead>
                   <tr>
@@ -86,14 +87,14 @@ if (isset($_POST['submit'])) {
                   <?php foreach ($result as $row) { ?>
 
                     <tr>
-                      <td><div style="color:white"><?php echo $row["case_number"];?></td>
-                      <td><div style="color:white"><?php echo $row["case_status"]; ?></td>
-                      <td><div style="color:white"><?php echo $row["case_submitted"]; ?></td>
-                      <td><div style="color:white"><?php echo $row["decision_date"]; ?></td>
-                      <td><div style="color:white"><?php echo $row["visa_class"]; ?></td>
-                      <td><div style="color:white"><?php echo $row["employment_start_date"]; ?></td>
-                      <td><div style="color:grey"><?php echo $row["employment_end_date"]; ?></td>
-                      <td><div style="color:white"><?php echo $row["employer_name"]; ?></td>
+                      <td><div><?php echo $row["case_number"];?></td>
+                      <td><div><?php echo $row["case_status"]; ?></td>
+                      <td><div><?php echo $row["case_submitted"]; ?></td>
+                      <td><div><?php echo $row["decision_date"]; ?></td>
+                      <td><div><?php echo $row["visa_class"]; ?></td>
+                      <td><div><?php echo $row["employment_start_date"]; ?></td>
+                      <td><div><?php echo $row["employment_end_date"]; ?></td>
+                      <td><div><?php echo $row["employer_name"]; ?></td>
 
                     </tr>
                   <?php } ?>

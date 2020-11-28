@@ -1,9 +1,9 @@
-#DROP DATABASE IF EXISTS H_info;
-#CREATE DATABASE H_info;
+DROP DATABASE IF EXISTS H_info;
+CREATE DATABASE H_info;
 USE H_info;
 DROP TABLE IF EXISTS big_table;
 CREATE TABLE big_table(
-	case_number VARCHAR(18),
+	case_number CHAR(18),
     case_status VARCHAR(20),
     case_submitted DATE,
     decision_date DATE,
@@ -18,11 +18,11 @@ CREATE TABLE big_table(
     employer_phone BIGINT,
     agent_attorney_name VARCHAR(20),
     agent_attorney_city VARCHAR(20),
-     agent_attorney_state VARCHAR(10),
-     job_title VARCHAR(30),
-     soc_code VARCHAR(20),
-     soc_name VARCHAR(20),
-     full_time_position VARCHAR(5),
+    agent_attorney_state VARCHAR(10),
+    job_title VARCHAR(30),
+    soc_code VARCHAR(20),
+    soc_name VARCHAR(20),
+    full_time_position VARCHAR(5),
 	prevailing_wage INT,
     pw_unit_of_pay VARCHAR(10),
 	wage_unit_of_pay VARCHAR(10),
@@ -60,10 +60,6 @@ CREATE TABLE big_table(
 		employment_start_date = STR_TO_DATE(@var3,'%m/%d/%Y'),
 		employment_end_date = STR_TO_DATE(@var4,'%m/%d/%Y');
         
-        
-#DROP DATABASE IF EXISTS H_info;
-#CREATE DATABASE H_info;
-USE H_info;
 
 
 

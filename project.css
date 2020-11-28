@@ -1,16 +1,13 @@
-/* added format*/
-
-
 .btn {
 	background-color: white;
-	color: white;
+	color: black;
 	border: 2px solid #555555;
 	margin: 10px;
 }
 
 .btn:hover {
 	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-	background-color: white;
+	background-color: #555555;
 	color: white;
 }
 
@@ -21,26 +18,19 @@ th {
 /* original */
 body {
 	padding-left: 100px;
+	background-color: beige;
 }
-body {
-	background-size: auto 1300px;
-	background-repeat:no-repeat;
-}
+
 div#navbar {
 	text-align: center;
 	height: 40px;
 	background-repeat: repeat-x;
 }
-div#navbar:hover {
-	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-	background-color: white;
-	color: white;
-}
+
 div#navbar ul {
 	line-height: 40px;
 	font-size: 24px;
 	margin: 0px;
-	color:white;
 	padding: 0px;
 }
 
@@ -76,11 +66,8 @@ td, th {
 
 h1 {
 	color: rgb(0, 58, 247);
-	color: white;
 }
-ul{
-	color: white;
-}
+
 footer {
 	width: 600px;
 	border-top: dotted 1px;
@@ -88,9 +75,4 @@ footer {
 
 p {
 	width: 600px;
-	color: white;
-}
-p:hover {
-	 box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-	 color: yellow;
- }
+} 
