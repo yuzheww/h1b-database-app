@@ -47,34 +47,33 @@ if (isset($_POST['submit'])) {
     <input type="submit" name="submit" value="Delete Case" class = "btn">
   </form>
   
-  
   <?php
-  if (isset($_POST['submit'])) {
-    if ($result && $prepared_stmt->rowCount() > 0) { ?>
-      <table>
-        <thead>
-          <tr>
-            <th>Delete Status</th>
+      if (isset($_POST['submit'])) {
+        if ($result && $prepared_stmt->rowCount() > 0) { ?>
+    
+              <h2>Results</h2>
 
-          </tr>
-        </thead>
-        <tbody>
-
-          <?php foreach ($result as $row) { ?>
-
-            <tr>
-              <td>
-                <div><?php echo $row["ret"]; ?>
-              </td>
-            </tr>
-          <?php } ?>
-        </tbody>
-      </table>
-    <?php } else { ?>
-      Delete is unsuccesful to ID: <?php echo $_POST['cnum']; ?>.
-  <?php }
-  } ?>
-
+              <table>
+                <thead>
+                  <tr>
+                    <th>delete status</th>
+                  </tr>
+                </thead>
+                <tbody>
+            
+                  <?php foreach ($result as $row) { ?>
+                
+                    <tr>
+                      <td><?php echo $row["msg"]; ?></td>
+                    </tr>
+                  <?php } ?>
+                </tbody>
+            </table>
+  
+        <?php } else { ?>
+          Sorry No results found for <?php echo $_POST['cnum']; ?>.
+        <?php }
+    } ?>
 
 </body>
 

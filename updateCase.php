@@ -35,10 +35,9 @@ if (isset($_POST['submit'])) {
     $prepared_stmt->bindValue(':agent_city', $agent_city, PDO::PARAM_STR);
     $prepared_stmt->bindValue(':agent_state', $agent_state, PDO::PARAM_STR);
     $prepared_stmt->execute();
-    echo "<script>alert('update is successful!')</script>";
+    $result = $prepared_stmt->fetchAll();
   } catch (PDOException $ex) { // Error in database processing.
     echo $sql . "<br>" . $error->getMessage(); // HTTP 500 - Internal Server Error
-    echo "<script>alert('The update is unsuccesful')</script>";
   }
 }
 
@@ -153,31 +152,40 @@ if (isset($_POST['submit'])) {
 
 
   <?php
-  if (isset($_POST['submit'])) {
-    if ($result && $prepared_stmt->rowCount() > 0) { ?>
-      <table>
-        <thead>
-          <tr>
-            <th>Update Status</th>
+      if (isset($_POST['submit']) || isset($_POST['submit2'])) {
+        if ($result && $prepared_stmt->rowCount() > 0) { ?>
+    
+              <h2>Results</h2>
 
-          </tr>
-        </thead>
-        <tbody>
-
-          <?php foreach ($result as $row) { ?>
-
-            <tr>
-              <td>
-                <div><?php echo $row["ret"]; ?>
-              </td>
-            </tr>
-          <?php } ?>
-        </tbody>
-      </table>
-    <?php } else { ?>
-      Update is unsuccesful to ID: <?php echo $_POST['cnum']; ?>.
-  <?php }
-  } ?>
+              <table>
+                <thead>
+                  <tr>
+                    <th>case number</th>
+                    <th>case status</th>
+                    <th>agent attorney name</th>
+                    <th>agent attorney city</th>
+                    <th>agent attorney state</th>
+                  </tr>
+                </thead>
+                <tbody>
+            
+                  <?php foreach ($result as $row) { ?>
+                
+                    <tr>
+                      <td><?php echo $row["case_number"]; ?></td>
+                      <td><?php echo $row["case_status"]; ?></td>
+                      <td><?php echo $row["agent_attorney_name"]; ?></td>
+                      <td><?php echo $row["agent_attorney_city"]; ?></td>
+                      <td><?php echo $row["agent_attorney_state"]; ?></td>
+                    </tr>
+                  <?php } ?>
+                </tbody>
+            </table>
+  
+        <?php } else { ?>
+          Sorry No results found for <?php echo $_POST['cnum']; ?>.
+        <?php }
+    } ?>
 
 </body>
 

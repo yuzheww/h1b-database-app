@@ -18,6 +18,7 @@ if (isset($_POST['submit'])) {
         $prepared_stmt->bindValue(':csub', $csub, PDO::PARAM_STR);
         $prepared_stmt->bindValue(':cdeci', $cdeci, PDO::PARAM_STR);
         $prepared_stmt->execute();
+        $result = $prepared_stmt->fetchAll();
     } catch (PDOException $ex) { // Error in database processing.
         echo $sql . "<br>" . $error->getMessage(); // HTTP 500 - Internal Server Error
     }
@@ -68,6 +69,33 @@ if (isset($_POST['submit'])) {
     </form>
 
 
+    <?php
+      if (isset($_POST['submit'])) {
+        if ($result && $prepared_stmt->rowCount() > 0) { ?>
+    
+              <h2>Results</h2>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>insert status</th>
+                  </tr>
+                </thead>
+                <tbody>
+            
+                  <?php foreach ($result as $row) { ?>
+                
+                    <tr>
+                      <td><?php echo $row["msg"]; ?></td>
+                    </tr>
+                  <?php } ?>
+                </tbody>
+            </table>
+  
+        <?php } else { ?>
+          Sorry No results found for <?php echo $_POST['cnum']; ?>.
+        <?php }
+    } ?>
 
 </body>
 
